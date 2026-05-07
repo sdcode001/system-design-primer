@@ -474,7 +474,8 @@ You withdraw $100 in London.
 The London server approves it immediately.
 ###### Conflict: 
 The New York server doesn't know about this withdrawal.
-###### Outcome: You could technically "double-spend" your money at both locations, but the system never went down.
+###### Outcome: 
+You could technically "double-spend" your money at both locations, but the system never went down.
 
 #### 🔴 Scenario B: 
 Consistency (CP)The system prioritizes accuracy.
@@ -484,7 +485,7 @@ You try to withdraw $100 in London.
 The London server tries to "call" New York to confirm your total balance.
 ###### Conflict: 
 It can't reach New York due to the broken cable.
-###### Outcome: 
+###### Outcome:
 The transaction is rejected with an error message. 
 The system is "down" for you, but your balance remains perfectly accurate.
 
