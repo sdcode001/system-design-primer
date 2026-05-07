@@ -463,6 +463,31 @@ Responses return the most readily available version of the data available on any
 
 AP is a good choice if the business needs to allow for [eventual consistency](#eventual-consistency) or when the system needs to continue working despite external errors.
 
+### Example
+Imagine two bank servers, one in New York and one in London, that sync balance updates. A submarine cable snaps, and they can no longer talk to each other.
+
+#### 🟢 Scenario A: 
+Availability (AP)The system prioritizes staying online.
+##### Action: 
+You withdraw $100 in London.
+##### Result: 
+The London server approves it immediately.
+###### Conflict: 
+The New York server doesn't know about this withdrawal.
+###### Outcome: You could technically "double-spend" your money at both locations, but the system never went down.
+
+#### 🔴 Scenario B: 
+Consistency (CP)The system prioritizes accuracy.
+##### Action: 
+You try to withdraw $100 in London.
+##### Result: 
+The London server tries to "call" New York to confirm your total balance.
+###### Conflict: 
+It can't reach New York due to the broken cable.
+###### Outcome: 
+The transaction is rejected with an error message. 
+The system is "down" for you, but your balance remains perfectly accurate.
+
 ### Source(s) and further reading
 
 * [CAP theorem revisited](https://robertgreiner.com/cap-theorem-revisited/)
